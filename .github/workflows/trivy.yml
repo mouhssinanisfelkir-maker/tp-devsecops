@@ -22,7 +22,7 @@ jobs:
         run: docker build -t tp-devsecops:${{ github.sha }} .
 
       - name: Trivy - rapport SARIF
-        uses: aquasecurity/trivy-action@0.24.0
+         uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: tp-devsecops:${{ github.sha }}
           format: sarif
@@ -39,7 +39,7 @@ jobs:
           category: trivy
 
       - name: Trivy - echec si CRITICAL
-        uses: aquasecurity/trivy-action@0.24.0
+         uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: tp-devsecops:${{ github.sha }}
           format: table
