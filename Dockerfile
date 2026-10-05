@@ -1,6 +1,6 @@
 # Image de base volontairement ancienne pour que Trivy détecte des CVE (étape 1 du TP).
 # Correction à faire plus tard : passer à python:3.12-slim (voir GUIDE.md, section 4.4)
-FROM python:3.8-buster
+FROM python:3.11-buster
 
 WORKDIR /app
 COPY app/requirements.txt .

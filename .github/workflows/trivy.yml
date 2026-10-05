@@ -21,7 +21,6 @@ jobs:
       - name: Build de l'image Docker
         run: docker build -t tp-devsecops:${{ github.sha }} .
 
-      # 1) Rapport complet (HIGH + CRITICAL) envoyé dans l'onglet Sécurité, ne bloque pas
       - name: Trivy - rapport SARIF
         uses: aquasecurity/trivy-action@v0.36.0
         with:
@@ -32,7 +31,7 @@ jobs:
           ignore-unfixed: false
           exit-code: '0'
 
-      - name: Envoi du rapport vers l'onglet Sécurité
+      - name: Envoi du rapport vers l'onglet Securite
         uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
