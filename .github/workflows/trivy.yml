@@ -22,7 +22,7 @@ jobs:
         run: docker build -t tp-devsecops:${{ github.sha }} .
 
       - name: Trivy - rapport SARIF
-        uses: aquasecurity/trivy-action@0.35.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: tp-devsecops:${{ github.sha }}
           format: sarif
@@ -38,8 +38,9 @@ jobs:
           sarif_file: trivy-results.sarif
           category: trivy
 
-      - name: Trivy - echec si CRITICAL
-        uses: aquasecurity/trivy-action@0.35.0
+      # 2) Gate : le pipeline échoue s'il y a au moins une vulnérabilité CRITICAL
+      - name: Trivy - échec si CRITICAL
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: tp-devsecops:${{ github.sha }}
           format: table
