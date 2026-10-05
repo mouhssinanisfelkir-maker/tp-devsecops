@@ -1,0 +1,10 @@
+services:
+  ch1-sqli:
+    build: ./ch1-sqli
+    ports: ["8081:5000"]
+  ch2-upload:
+    build: ./ch2-upload
+    ports: ["8082:5000"]
+  ch3-cmdi:
+    build: ./ch3-cmdi
+    ports: ["8083:5000"]

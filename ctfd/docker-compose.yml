@@ -1,0 +1,32 @@
+# CTFd minimal (équivalent du compose officiel), accessible sur http://localhost:8000
+services:
+  ctfd:
+    image: ctfd/ctfd:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=change-me-with-a-long-random-string
+      - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
+      - REDIS_URL=redis://cache:6379
+      - WORKERS=1
+      - REVERSE_PROXY=false
+    depends_on:
+      - db
+      - cache
+    volumes:
+      - ctfd_uploads:/var/uploads
+  db:
+    image: mariadb:10.11
+    environment:
+      - MARIADB_ROOT_PASSWORD=ctfd
+      - MARIADB_USER=ctfd
+      - MARIADB_PASSWORD=ctfd
+      - MARIADB_DATABASE=ctfd
+    volumes:
+      - ctfd_db:/var/lib/mysql
+    command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800]
+  cache:
+    image: redis:7
+volumes:
+  ctfd_uploads:
+  ctfd_db:
