@@ -2,5 +2,5 @@ Flask==1.1.2
 Jinja2==3.1.6
 Werkzeug==3.1.9
 PyYAML==6.0.3
-requests==2.19.0
+requests==2.34.2
 Pillow==12.3.0
