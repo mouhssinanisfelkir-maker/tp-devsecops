@@ -23,7 +23,7 @@ jobs:
 
       # 1) Rapport complet (HIGH + CRITICAL) envoyé dans l'onglet Sécurité, ne bloque pas
       - name: Trivy - rapport SARIF
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: tp-devsecops:${{ github.sha }}
           format: sarif
@@ -41,7 +41,7 @@ jobs:
 
       # 2) Gate : le pipeline échoue s'il y a au moins une vulnérabilité CRITICAL
       - name: Trivy - échec si CRITICAL
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: tp-devsecops:${{ github.sha }}
           format: table
